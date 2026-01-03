@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>FlowState | Intelligent Plumbing</title>
+    <meta name="description" content="Predictive plumbing for the modern home." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Titan+One&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Outfit"', 'sans-serif'],
+              display: ['"Titan One"', 'cursive'],
+            },
+            colors: {
+              cream: '#FFF8F0',
+              navy: '#0F172A',
+              navyLight: '#1E293B',
+              blue: '#3B82F6',
+              cyan: '#06B6D4',
+              rust: '#F97316',
+              softBlue: '#D1E0FF',
+            },
+            borderRadius: {
+              '4xl': '2.5rem',
+              '5xl': '3rem',
+            },
+            boxShadow: {
+              'neo': '8px 8px 0px 0px rgba(15,23,42,1)',
+              'neo-sm': '4px 4px 0px 0px rgba(15,23,42,1)',
+              'neo-hover': '12px 12px 0px 0px rgba(15,23,42,1)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #FFF8F0;
+        color: #0F172A;
+        overflow-x: hidden;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FFF8F0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #0F172A;
+        border-radius: 6px;
+        border: 3px solid #FFF8F0;
+      }
+      .font-display {
+        font-family: 'Titan One', cursive;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
