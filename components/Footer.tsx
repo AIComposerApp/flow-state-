@@ -1,9 +1,14 @@
+
 import React from 'react';
 import { SectionWrapper } from './SectionWrapper';
 import { Button } from './Button';
 import { motion } from 'framer-motion';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+    onJoin?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onJoin }) => {
   return (
     <SectionWrapper className="bg-[#E11D48] text-white z-50 border-t-0 pt-40 pb-16 min-h-[90vh] flex flex-col justify-between overflow-hidden relative">
          {/* Background pattern */}
@@ -46,7 +51,7 @@ export const Footer: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.6 }}
              >
-                 <Button className="bg-[#FFF8F0] text-[#E11D48] hover:bg-white border-transparent text-xl px-12 py-5 shadow-neo">
+                 <Button onClick={onJoin} className="bg-[#FFF8F0] text-[#E11D48] hover:bg-white border-transparent text-xl px-12 py-5 shadow-neo">
                      JOIN THE WAITING LIST
                  </Button>
              </motion.div>

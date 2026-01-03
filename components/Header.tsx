@@ -1,9 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  onNavigate?: (page: 'home' | 'how-it-works' | 'pricing' | 'join-waitlist') => void;
+  currentPage?: string;
+}
+
+export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -14,6 +20,11 @@ export const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (page: 'home' | 'how-it-works' | 'pricing' | 'join-waitlist') => {
+    if (onNavigate) onNavigate(page);
+    setMenuOpen(false);
+  }
 
   return (
     <>
@@ -37,24 +48,29 @@ export const Header: React.FC = () => {
         </motion.button>
 
         {/* Center: Logo */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2">
-            <span className="font-display text-3xl text-navy tracking-normal select-none relative group">
-                <span className="absolute -inset-1 blur-lg bg-cyan/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                <span className="relative">pomegranate</span> {/* Playfully using the user's favorite text style, but changed to FlowState in context usually, but keeping this styling */}
-                <span className="hidden">FlowState</span>
-            </span>
-            {/* Let's actually use the app name "FlowState" but with that font style */}
-             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 w-max text-center">
-                 <span className="font-display text-3xl text-navy tracking-tight drop-shadow-sm">flowstate</span>
+        <div 
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 cursor-pointer"
+          onClick={() => handleNavClick('home')}
+        >
+             <div className="w-max text-center">
+                 <span className="font-display text-3xl text-navy tracking-tight drop-shadow-sm hover:text-cyan transition-colors">flowstate</span>
              </div>
         </div>
 
         {/* Right: CTA */}
         <div className="flex gap-2">
-            <Button variant="secondary" className="hidden md:block scale-90">
-                JOIN WAITLIST
+            <Button 
+                variant="secondary" 
+                className="hidden md:block scale-90"
+                onClick={() => handleNavClick('pricing')}
+            >
+                SEE PLANS
             </Button>
-            <Button variant="primary" className="md:hidden scale-75 px-4">
+            <Button 
+                variant="primary" 
+                className="md:hidden scale-75 px-4"
+                onClick={() => handleNavClick('join-waitlist')}
+            >
                 JOIN
             </Button>
         </div>
@@ -75,19 +91,49 @@ export const Header: React.FC = () => {
              <X size={32} />
            </button>
            <nav className="text-center space-y-6">
-             {['How it Works', 'Pricing', 'Technology', 'About Us'].map((item, i) => (
-               <motion.a 
-                 key={item}
-                 href="#" 
+               <motion.div 
+                 onClick={() => handleNavClick('home')}
                  initial={{ y: 50, opacity: 0 }}
                  animate={{ y: 0, opacity: 1 }}
-                 transition={{ delay: 0.1 * i }}
-                 className="block font-display text-5xl text-cream hover:text-cyan transition-colors"
+                 transition={{ delay: 0.1 }}
+                 className="block font-display text-5xl text-cream hover:text-cyan transition-colors cursor-pointer"
                  whileHover={{ scale: 1.1, rotate: -2 }}
                >
-                 {item}
-               </motion.a>
-             ))}
+                 Home
+               </motion.div>
+               
+               <motion.div 
+                 onClick={() => handleNavClick('how-it-works')}
+                 initial={{ y: 50, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 transition={{ delay: 0.2 }}
+                 className="block font-display text-5xl text-cream hover:text-cyan transition-colors cursor-pointer"
+                 whileHover={{ scale: 1.1, rotate: -2 }}
+               >
+                 How it Works
+               </motion.div>
+
+               <motion.div 
+                 onClick={() => handleNavClick('pricing')}
+                 initial={{ y: 50, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 transition={{ delay: 0.3 }}
+                 className="block font-display text-5xl text-cream hover:text-cyan transition-colors cursor-pointer"
+                 whileHover={{ scale: 1.1, rotate: -2 }}
+               >
+                 Pricing
+               </motion.div>
+
+               <motion.div 
+                 onClick={() => handleNavClick('join-waitlist')}
+                 initial={{ y: 50, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 transition={{ delay: 0.4 }}
+                 className="block font-display text-5xl text-rust hover:text-white transition-colors cursor-pointer"
+                 whileHover={{ scale: 1.1, rotate: -2 }}
+               >
+                 Join Waitlist
+               </motion.div>
            </nav>
         </motion.div>
       )}
